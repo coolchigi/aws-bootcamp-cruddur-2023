@@ -51,6 +51,12 @@ gp env AWS_DEFAULT_REGION=us-east-1
 aws sts get-caller-identity
 ```
 
+### Get the account and save it as a env var in Gitpod
+
+```sh
+aws sts get-caller-identity --query Account --output text
+```
+
 ## Creating a Billing Alarm
 There are 2 ways to set the billing alerts.
 
