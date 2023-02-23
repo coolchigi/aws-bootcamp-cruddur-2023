@@ -15,3 +15,30 @@
     - Terminal Output -> ![Terminal Output](../backend-flask/img/output.png)
     - Browser Output -> ![Browser Output](../backend-flask/img/Browser%20Output.png)
     Ctrl + C to kill server
+
+---------------	---------------	---------------	---------------	
+## Step 2: Unset the URL's
+- Use the ```unset``` command to unset the BACKEND_URL & FRONTEND_URL
+Navigate to your project dir and run ```docker build -t  backend-flask ./backend-flask```
+
+- You should see ```Successfully built e39facc0f80c
+Successfully tagged backend-flask:latest```
+
+- Run the command ```sh docker run --rm -p 4567:4567 -it backend-flask```
+    > I encountered an error *Docker - Bind for 0.0.0.0:4567 failed: port is already allocated*
+    - The cause: Previous container launched was killed
+        - The fix: Killed prev launched container by
+            - docker container ls
+            - copy the container id
+            - docker stop {container id}
+- Enter the following in terminal
+    docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+- Open new terminal and run docker ps
+
+## Step 3: Frontend
+- Navigate to the frontend directory from the terminal and type "npm install"
+- While that is being installed, create a Dockerfile and copy the contents from [repo](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md#create-docker-file)
+- Create a docker-compose.yaml and copy the contents from [here](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md#create-a-docker-compose-file)
+- Right-click on the docker-compose file and click "Compose Up"
+    - Remember to kill the container else you would get ```Docker - Bind for 0.0.0.0:4000 failed: port is already allocated```
+- Clean up! -> Stop all the containers!
