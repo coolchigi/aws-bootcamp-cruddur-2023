@@ -53,6 +53,23 @@ Successfully tagged backend-flask:latest```
       cd /workspace/aws-bootcamp-cruddur-2023/frontend-react-js
       npm i
       exit
-- Next: Add an endpoint to our application
-    - From the Open 
-    ```
+- Next: Add an endpoint for our notifications
+    - Open the openapi-3.0.yml document and add a new path
+        ```yml
+        /api/activities/notifications:
+        get:
+      description: 'Return a feed of activities for all followers and the people I follow'
+      tags:
+          - activities
+      parameters: []
+      responses:
+        '200':
+          description: 'Returns array of activities'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity'
+        ```
+    - The endpoint into our app can be found in the app.py file
