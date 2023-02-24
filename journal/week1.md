@@ -42,3 +42,15 @@ Successfully tagged backend-flask:latest```
 - Right-click on the docker-compose file and click "Compose Up"
     - Remember to kill the container else you would get ```Docker - Bind for 0.0.0.0:4000 failed: port is already allocated```
 - Clean up! -> Stop all the containers!
+
+## Step 4: Added notification feature
+- To begin, right click on the docker-compose.yaml
+    - You may run into a problem where clicking on port 3000 throws an error. To fix the error, run ```npm i``` in the /frontend-react-js folder
+    - You can also add the following to the gitpod.yml:
+    ```js
+    - name: npm-install
+    init: |
+      cd /workspace/aws-bootcamp-cruddur-2023/frontend-react-js
+      npm i
+      exit
+    ```
