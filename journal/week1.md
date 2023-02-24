@@ -74,3 +74,4 @@ Successfully tagged backend-flask:latest```
         ```
     - The endpoint into our app can be found in the app.py file
     - In app.py, add a new route: /api/home/notifications
+        - Refer to this video: [SetUp Frontend & Backend](https://www.youtube.com/watch?v=k-_o0cCpksk&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=27)
