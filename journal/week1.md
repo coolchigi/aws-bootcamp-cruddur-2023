@@ -53,4 +53,6 @@ Successfully tagged backend-flask:latest```
       cd /workspace/aws-bootcamp-cruddur-2023/frontend-react-js
       npm i
       exit
+- Next: Add an endpoint to our application
+    - From the Open 
     ```
