@@ -73,3 +73,4 @@ Successfully tagged backend-flask:latest```
                   $ref: '#/components/schemas/Activity'
         ```
     - The endpoint into our app can be found in the app.py file
+    - In app.py, add a new route: /api/home/notifications
