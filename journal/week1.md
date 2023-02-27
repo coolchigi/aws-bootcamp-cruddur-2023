@@ -6,7 +6,8 @@
 
 ## Step 1: Download the Docker extention on VS Code
 - Create a Dockerfile
-- Template can be found in the repo [repo](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md)
+- Template can be found in the repo [repo](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md#add-dockerfile)
+- The commands provided above indicate that the container will execute in a specific folder named ‘backend-flask’, as specified by the ‘WORKDIR /backend-flask’ command.
 - Try to run the python command, if you havent set the env vars, you should get a 404 error
 - Set env vars by doing the following:
     - ```export FRONTEND_URL="*" ```
