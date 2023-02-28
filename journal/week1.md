@@ -107,11 +107,12 @@ Successfully tagged backend-flask:latest```
 - PostGres by default uses port 5432. You may encounter an error with the yaml file. This might happen because of poorly formatted code, so use a Yaml validator. 
     - [Yaml Validator](https://www.yamllint.com/) -> be sure to not include sensitive info
 - To work, Postgres needs a client. So we're going to add the following in our .gitpod.yml:
+- Copy these lines, one-by one into your terminal
     ```yaml
     - name: postgres
     init: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
       echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
       sudo apt update
-      sudo apt install -y postgresql-client-13 libpq-de
+      sudo apt install -y postgresql-client-13 libpq-dev
     ```
