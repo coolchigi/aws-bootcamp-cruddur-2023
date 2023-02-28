@@ -77,4 +77,30 @@ Successfully tagged backend-flask:latest```
     - In app.py, add a new route: /api/home/notifications
         - Refer to this video: [SetUp Frontend & Backend](https://www.youtube.com/watch?v=k-_o0cCpksk&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=27)
 
-## Step 5: Add dynamoDb & PostGress
+## Step 5: Add dynamoDb & PostGres
+- We are going to add some code to our docker-compose.yaml to spin up DynamoDb & Postgres
+- If you navigate to the AWS docs for DynamoDB local > Docker code and add it into your yaml file
+- DynamoDB local is a way of working with DynamoDB
+- We might have to change the ports as well. Add the following to your yaml file
+    ```yml
+        db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+  dynamodb-local:
+    user: root
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath ./data
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb-local
+    ports:
+      - 8000:8000
+    volumes:
+      - ./docker/dynamodb:/home/dynamodblocal/data
+    working_dir: /home/dynamodblocal
+        ```
