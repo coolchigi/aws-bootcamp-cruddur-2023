@@ -36,7 +36,7 @@ Successfully tagged backend-flask:latest```
     docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
 - Open new terminal and run docker ps
 
-## Step 3: Frontend
+## Step 3: Containerize Frontend & Backend
 - Navigate to the frontend directory from the terminal and type "npm install"
 - While that is being installed, create a Dockerfile and copy the contents from [repo](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md#create-docker-file)
 - Create a docker-compose.yaml and copy the contents from [here](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md#create-a-docker-compose-file)
@@ -76,3 +76,5 @@ Successfully tagged backend-flask:latest```
     - The endpoint into our app can be found in the app.py file
     - In app.py, add a new route: /api/home/notifications
         - Refer to this video: [SetUp Frontend & Backend](https://www.youtube.com/watch?v=k-_o0cCpksk&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=27)
+
+## Step 5: Add dynamoDb & PostGress
