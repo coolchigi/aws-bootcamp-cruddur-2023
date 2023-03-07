@@ -5,10 +5,10 @@ WORKDIR /backend-flask
 
 
 # Outside Container -> Inside Container
-COPY requirements.txt requirements.txt
+COPY req.txt req.txt
 
 # Install the python libraries used for the app
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r req.txt
 
 #Outside Container -> Inside Container
 # . means everything in current dir
