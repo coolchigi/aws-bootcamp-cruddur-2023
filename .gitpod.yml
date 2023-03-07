@@ -11,7 +11,7 @@ tasks:
   - name: npm-install
     init: |
       cd /workspace/aws-bootcamp-cruddur-2023/frontend-react-js
-      npm i
+      npm install
       exit
   - name: postgres
     init: |
