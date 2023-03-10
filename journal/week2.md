@@ -40,9 +40,6 @@ So embrace distributed tracing, 👐
 And let it be your guiding light, 💡
 For when the system gets too complex, 🤯
 Distributed tracing will set it right. ✅
-
-
-
 ```
 
 
