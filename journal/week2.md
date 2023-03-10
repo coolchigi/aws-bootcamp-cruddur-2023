@@ -42,7 +42,6 @@ For when the system gets too complex, 🤯
 Distributed tracing will set it right. ✅
 ```
 
-
 ## Install Honeycomb
 
 On the backend-flask/requirements.text, add the following code
