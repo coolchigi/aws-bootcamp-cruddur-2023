@@ -1,8 +1,49 @@
 # Week 2 — Distributed Tracing
 
 ## Welcome to week 2!
-Our focus on this week is as the name implies distributed tracing. What is Distributed Tracing?
-Distributed tracing is a technique that addresses logging information in microservice-based applications
+Our focus on this week is as the name implies distributed tracing. 
+
+## What is Distributed Tracing? ## 
+Distributed tracing is a technique that addresses logging information in microservice-based applications. Distributed tracing is a crucial technique for understanding the behavior of complex, distributed systems. By tracing requests across different services and components, developers can gain visibility into how these systems behave and identify and troubleshoot any issues that may arise.
+
+AWS CloudWatch is a monitoring and observability service provided by Amazon Web Services (AWS) that can be used for distributed tracing. It offers features such as metrics, logs, and alarms to provide a comprehensive view of the performance and health of your applications and infrastructure.
+
+Honeycomb is a commercial service that offers distributed tracing, logging, and metrics for cloud-native applications. It allows you to explore and analyze data in real-time, making it easy to identify and diagnose issues in your system.
+
+AWS X-Ray is another distributed tracing tool provided by AWS. It helps developers to analyze and debug distributed applications, allowing you to visualize the different components of your application and track requests as they move through your system.
+
+
+## Here are a few examples to illustrate the concept: ##
+
+Let's say you have an e-commerce website that relies on several microservices to process orders. A customer places an order, and you notice that the order is taking longer than usual to process. By using distributed tracing, you can trace the request as it moves through each microservice, identify the slowest service, and determine where the bottleneck is.
+
+Another example is in a banking system that involves several different services for handling transactions, user authentication, and more. If a customer reports a problem with their account, you can use distributed tracing to trace the request that led to the problem and identify which service is responsible.
+
+**As always here's a poem** 
+```
+In a world of complex systems, 🌎
+Where services are spread out far, 🕸️
+Distributed tracing is the key, 🔑
+To understanding where things are. 🕵️‍♂️
+
+With tracing, we can see the flow, 🌊
+Of requests as they move along, 🏃‍♀️
+And pinpoint where the issues lie, 🔍
+When something goes wrong. 💥
+
+We can trace across different services, 🔍
+And components of all shapes and sizes, 📦
+With tools like Jaeger, Zipkin, and more, 🔧
+Our troubleshooting becomes surprises. 🤯
+
+So embrace distributed tracing, 👐
+And let it be your guiding light, 💡
+For when the system gets too complex, 🤯
+Distributed tracing will set it right. ✅
+
+
+
+```
 
 
 ## Install Honeycomb
@@ -192,5 +233,7 @@ provider.add_span_processor(simple_processor)
 # xray
 XRayMiddleware(app, xray_recorder)
 ```
+
+Make sure this line is after you've declared the "app" variable in your app.py
 
 More information can be found here: [Xray Sdk Python](https://github.com/aws/aws-xray-sdk-python)
