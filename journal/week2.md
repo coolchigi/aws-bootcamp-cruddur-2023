@@ -128,7 +128,6 @@ Take note, dear friend, remember its name 📝
 And in the backend-flask directory, install the same 💻
 Don't let this mishap cause you strife 🙅‍♂️
 Stay sharp and code on with newfound life! 💪🚀
-
 ```
 
 logger.info("HomeActivities")
