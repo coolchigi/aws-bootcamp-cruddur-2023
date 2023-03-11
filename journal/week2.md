@@ -131,6 +131,8 @@ Stay sharp and code on with newfound life! 💪🚀
 
 ```
 
+logger.info("HomeActivities")
+
 
 ## Install Xray
 
