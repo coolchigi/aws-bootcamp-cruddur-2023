@@ -45,7 +45,7 @@ Please  click [here](https://scribehow.com/shared/How_to_Create_a_User_Pool_in_A
 
  Using the terminal go to the dictory by typing the following command:
 ``` 
-cd front-react-js 
+cd frontend-react-js 
 npm i aws-amplyfy --save
 ```
 this command will install amplify library and  will be added to the package.json
