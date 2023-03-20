@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 
 // [TODO] Authenication
-import Cookies from 'js-cookie'
+import { Auth } from 'aws-amplify';
 
 export default function ConfirmationPage() {
   const [email, setEmail] = React.useState('');
@@ -22,7 +22,7 @@ export default function ConfirmationPage() {
   }
 
   const resend_code = async (event) => {
-    setCognitoErrors('')
+    setErrors('')
     try {
       await Auth.resendSignUp(email);
       console.log('code resent successfully');
@@ -39,14 +39,15 @@ export default function ConfirmationPage() {
       }
     }
   }
+
   const onsubmit = async (event) => {
     event.preventDefault();
-    setCognitoErrors('')
+    setErrors('')
     try {
       await Auth.confirmSignUp(email, code);
       window.location.href = "/"
     } catch (error) {
-      setCognitoErrors(error.message)
+      setErrors(error.message)
     }
     return false
   }
