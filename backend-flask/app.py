@@ -5,6 +5,8 @@ import os
 
 import sys
 
+from flask_awscognito import AWSCognitoAuthentication
+
 from services.home_activities import *
 from services.notifications_activities import *
 from services.user_activities import *
@@ -15,6 +17,8 @@ from services.message_groups import *
 from services.messages import *
 from services.create_message import *
 from services.show_activity import *
+
+
 
 # HoneyComb
 from opentelemetry import trace
@@ -60,6 +64,9 @@ tracer = trace.get_tracer(__name__)
 
 
 app = Flask(__name__)
+
+app.config['AWS_COGNITO_DOMAIN'] = os.getenv('AWS_USER_POOLS_ID')
+app.config['AWS_COGNITO_USER_POOL_ID'] =  os.getenv('APP_CLIENT_ID')
 
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
 @app.before_first_request
@@ -142,6 +149,7 @@ def data_create_message():
   return
 
 @app.route("/api/activities/home", methods=['GET'])
+@aws_auth.authentication_required
 def data_home():
   app.logger.info("AUTH HEADER")
   app.logger.info("AUTH HEADER")
@@ -150,6 +158,7 @@ def data_home():
     request.headers.get('Authorization')
   )
   data = HomeActivities.run()
+  claims = aws_auth.claims # also available through g.cognito_claims
   #data = HomeActivities.run(logger=LOGGER)
   return data, 200
 
