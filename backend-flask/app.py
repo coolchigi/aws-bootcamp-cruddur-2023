@@ -5,7 +5,6 @@ import os
 
 import sys
 
-from flask_awscognito import AWSCognitoAuthentication
 
 from services.home_activities import *
 from services.notifications_activities import *
@@ -17,6 +16,8 @@ from services.message_groups import *
 from services.messages import *
 from services.create_message import *
 from services.show_activity import *
+
+from lib.cognito_token_verification import CognitoJwtToken
 
 
 
@@ -64,6 +65,12 @@ tracer = trace.get_tracer(__name__)
 
 
 app = Flask(__name__)
+
+cognito_token_verification = CognitoJwtToken(
+  user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"), 
+  user_pool_client_id=os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"), 
+  region=os.getenv("AWS_DEFAULT_REGION")
+)
 
 app.config['AWS_COGNITO_DOMAIN'] = os.getenv('AWS_USER_POOLS_ID')
 app.config['AWS_COGNITO_USER_POOL_ID'] =  os.getenv('APP_CLIENT_ID')
