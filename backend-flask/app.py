@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
+
+from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
 import os
 
 import sys
@@ -17,7 +19,7 @@ from services.messages import *
 from services.create_message import *
 from services.show_activity import *
 
-from lib.cognito_jwt_token import CognitoJwtToken
+
 
 
 
@@ -65,6 +67,8 @@ tracer = trace.get_tracer(__name__)
 
 
 app = Flask(__name__)
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
 
 cognito_jwt_token = CognitoJwtToken(
   user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"), 
@@ -72,8 +76,6 @@ cognito_jwt_token = CognitoJwtToken(
   region=os.getenv("AWS_DEFAULT_REGION")
 )
 
-app.config['AWS_COGNITO_DOMAIN'] = os.getenv('AWS_USER_POOLS_ID')
-app.config['AWS_COGNITO_USER_POOL_ID'] =  os.getenv('APP_CLIENT_ID')
 
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
 @app.before_first_request
@@ -94,8 +96,7 @@ def init_rollbar():
 
 #XRayMiddleware(app, xray_recorder)
 # Initialize automatic instrumentation with Flask
-FlaskInstrumentor().instrument_app(app)
-RequestsInstrumentor().instrument()
+
 
 
 
@@ -156,9 +157,8 @@ def data_create_message():
   return
 
 @app.route("/api/activities/home", methods=['GET'])
-@aws_auth.authentication_required
 def data_home():
-  access_token = CognitoJwtToken.extract_access_token(request.headers)
+  access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
     # authenicatied request
@@ -168,8 +168,6 @@ def data_home():
     data = HomeActivities.run(cognito_user_id=claims['username'])
   except TokenVerifyError as e:
     # unauthenicatied request
-    _ = request.data
-    abort(make_response(jsonify(message=str(e)), 401))
     app.logger.debug(e)
     app.logger.debug("unauthenicated")
     data = HomeActivities.run()
